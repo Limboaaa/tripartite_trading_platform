@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tripartite_trading_platform:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>tripartite_trading_platform</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="tripartite_trading_platform-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="tripartite_trading_platform:war exploded" />
+    </root>
+  </artifact>
+</component>
