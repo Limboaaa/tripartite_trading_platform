@@ -36,9 +36,8 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
-
-
         public ServerResponse<String> register(User user) {
+
         return null;
     }
 
