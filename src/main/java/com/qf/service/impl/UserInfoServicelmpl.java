@@ -18,4 +18,5 @@ public class UserInfoServicelmpl implements UserInfoService{
         int register = userInfoMapper.registerUser(userInfo);
         return register>0;
     }
+
 }

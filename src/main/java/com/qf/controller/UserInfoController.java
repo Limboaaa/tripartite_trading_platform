@@ -21,4 +21,5 @@ public class UserInfoController{
         boolean registerUser = userInfoService.registerUser(userInfo);
         return registerUser;
     }
+
 }
