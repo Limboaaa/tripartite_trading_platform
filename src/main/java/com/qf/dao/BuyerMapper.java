@@ -1,7 +1,5 @@
 package com.qf.dao;
 
-import com.qf.pojo.Buyer;
-
 public interface BuyerMapper {
     int deleteByPrimaryKey(Long buyerid);
 

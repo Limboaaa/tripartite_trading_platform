@@ -1,7 +1,5 @@
 package com.qf.dao;
 
-import com.qf.pojo.Seller;
-
 public interface SellerMapper {
     int deleteByPrimaryKey(Integer sellerid);
 
