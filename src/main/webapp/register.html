@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+	<title>个人注册</title>
+
+
+    <link rel="stylesheet" type="text/css" href="css/webbase.css" />
+    <link rel="stylesheet" type="text/css" href="css/pages-register.css" />
+    <!-- 引入angular的js -->
+    <script type="text/javascript" src="plugins/angularjs/angular.min.js"></script>
+    <!-- 引入分页相关的JS和CSS -->
+    
+    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/service/userService.js"></script>
+    <script type="text/javascript" src="js/controller/userController.js"></script>
+    
+</head>
+
+
+<body ng-app="pinyougou" ng-controller="userController">
+
+	<div class="register py-container ">
+		<!--head-->
+		<div class="logoArea">
+			<a href="" class="logo"></a>
+
+		</div>
+		<!--register-->
+		<div class="registerArea">
+			<h3>注册新用户<span class="go">我有账号，去<a href="login.html" target="_blank">登录</a></span></h3>
+			<div class="info">
+				<form class="sui-form form-horizontal">
+					<div class="control-group">
+						<label class="control-label">用户名：</label>
+						<div class="controls">
+							<input id="username" type="text"   placeholder="请输入你的用户名" class="input-xfat input-xlarge" >
+						</div>
+					</div>
+					<div class="control-group">
+						<label  class="control-label">登录密码：</label>
+						<div class="controls">
+							<input id="password" type="text"  placeholder="设置登录密码" class="input-xfat input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label  class="control-label">确认密码：</label>
+						<div class="controls">
+							<input id="repassword" type="text"  placeholder="再次确认密码" class="input-xfat input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label  class="control-label">email：</label>
+						<div class="controls">
+							<input id="email" type="text"  placeholder="email" class="input-xfat input-xlarge">
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">手机号：</label>
+						<div class="controls">
+							<input id="phone" type="text"  placeholder="请输入你的手机号" class="input-xfat input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">验证问题：</label>
+						<div class="controls">
+							<input id="question" type="text"  placeholder="请输入你的找回密码验证问题" class="input-xfat input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">答案：</label>
+						<div class="controls">
+							<input id="answer" type="text"  placeholder="请输入你的找回密码问题答案" class="input-xfat input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<label  class="control-label">角色：</label>
+						<div class="controls">
+							<div class="dropdown">
+								<select id="role" name="role">
+									<option value="2">请选择角色</option>
+									<option value="1">卖家</option>
+									<option value="0">买家</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label  class="control-label">短信验证码：</label>
+						<div class="controls">
+							<input id="msgcode" type="text"  placeholder="短信验证码" ng-model="smscode" class="input-xfat input-xlarge">  <a href="#" ng-click="sendCode()">获取短信验证码</a>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<!--<label  class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>-->
+						<div class="controls">
+							<input name="m1" type="checkbox" value="2" checked=""><span>同意协议并注册《用户协议》</span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label"></label>
+						<div class="controls btn-reg">
+							<a class="sui-btn btn-block btn-xlarge btn-danger" onclick="registerUser()"  >完成注册</a>
+						</div>
+					</div>
+				</form>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<script>
+			function registerUser() {
+				var username = $("#username").val();
+				var password = $("#password").val();
+				var repassword = $("#repassword").val();
+				var email = $("#email").val();
+				var phone = $("#phone").val();
+				var msgcode = $("#msgcode").val();
+				var role=$("#role").val();
+				var question = $("#question").val();
+				var answer = $("#answer").val();
+				var filter=/^\s*[.A-Za-z0-9_-]{5,15}\s*$/;
+				/*var filter1=/^\s*([A-Za-z0-9_-]+(\.\w+)*@(\w+\.)+\w{2,3})\s*$/;*/
+				if(username==""){
+
+					alert("用户名不能为空")
+				}else if(!filter.test(username)) {
+
+					alert("用户名填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于5个字符，不超过15个字符，注意不要使用空格。");
+				}else if(password==""){
+
+					alert("请填写您的密码！");
+				}else if(!filter.test(password)){
+
+					alert("密码填写不正确,请重新填写！可使用的字符为（A-Z a-z 0-9 _ - .)长度不小于5个字符，不超过15个字符，注意不要使用空格。");
+				}else if(password!=repassword){
+
+					alert("两次密码不一致");
+				}else {
+
+					$.ajax({
+						//请求方式
+						type: "POST",
+						//请求的媒体类型
+						contentType: "application/json;charset=UTF-8",
+						//接受数据类型
+						dataType: "text",
+						//请求地址
+						url: "userinfo/reg",
+						//数据，json字符串
+						data: JSON.stringify(
+								{
+									"username": $("#username").val(),
+									"password": password,
+									"repassword": repassword,
+									"email": email,
+									"phone": phone,
+									"answer": answer,
+									"msgcode": msgcode,
+									"question": question,
+									"role": role
+								}
+						),
+						//请求成功
+						success: function (msg) {
+							console.log(msg);
+							if(msg==0){
+								alert("注册成功");
+								window.location.href = "login.html";
+							}else{
+
+								alert("用户名已存在");
+
+							}
+
+						},
+						//请求失败，包含具体的错误信息
+						error: function (e) {
+
+							console.log(e.status);
+							console.log(e.responseText);
+						}
+					});
+
+					}
+			}
+		</script>
+		<!--foot-->
+		<div class="py-container copyright">
+			<ul>
+				<li>关于我们</li>
+				<li>联系我们</li>
+				<li>联系客服</li>
+				<li>商家入驻</li>
+				<li>营销中心</li>
+				<li>手机品优购</li>
+				<li>销售联盟</li>
+				<li>品优购社区</li>
+			</ul>
+			<div class="address">地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096 电话：400-618-4000 传真：010-82935100</div>
+			<div class="beian">京ICP备08001421号京公网安备110108007702
+			</div>
+		</div>
+	</div>
+
+
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/plugins/sui/sui.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="js/pages/register.js"></script>
+</body>
+
+</html>
