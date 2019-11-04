@@ -3,6 +3,9 @@
   <component name="FacetManager">
     <facet type="web" name="Web">
       <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
@@ -39,7 +42,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../JDK/jdk1.8/jdk1.8.0_51/lib/jconsole.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../JDK/jdk1.8/jdk1.8.0_51/lib/jconsole.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -48,7 +51,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:tools:1.8.0">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../JDK/jdk1.8/jdk1.8.0_51/lib/tools.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../JDK/jdk1.8/jdk1.8.0_51/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
