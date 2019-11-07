@@ -12,5 +12,7 @@ public class DemoController2 {
     public void test1(){
 
         String demo2="这是第二次测试";
+
+        String demo3="测试提交代码";
     }
 }
